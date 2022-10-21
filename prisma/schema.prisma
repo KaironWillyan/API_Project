@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Aluno {
+  id String @id @default(uuid()) @unique
+  firstName String
+  lasttName String
+  nota1 Float
+  nota2 Float
+  media Float
+  @@map("Alunos")
+}

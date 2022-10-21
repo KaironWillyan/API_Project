@@ -1,0 +1,11 @@
+{
+    "sqltools.useNodeRuntime": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "Alunos",
+            "database": "${workspaceFolder:alunos_api}/prisma/dev.db"
+        }
+    ]
+}
