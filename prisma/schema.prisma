@@ -13,6 +13,5 @@ model Aluno {
   lasttName String
   nota1 Float
   nota2 Float
-  media Float
   @@map("Alunos")
 }

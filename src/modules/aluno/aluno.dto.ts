@@ -4,5 +4,4 @@ export type AlunoDTO = {
     lastName: string
     nota1: number
     nota2: number
-    media: number
 }
