@@ -1,12 +1,17 @@
 import { Injectable } from '@nestjs/common';
+import { BadRequestException } from '@nestjs/common/exceptions';
+import { Aluno } from '@prisma/client';
 import { PrismaService } from 'src/database/PrismaService';
+import { AlunoController } from './aluno.controller';
 import { AlunoDTO } from './aluno.dto';
+import { alunoResposta } from './alunoResposta.dto';
 
 @Injectable()
 export class AlunoService {
     constructor(private prisma: PrismaService){}
 
-    async create(data: AlunoDTO){
+    async create(data: AlunoDTO): Promise<Aluno>{
+        const media = (data.nota1 + data.nota2) / 2;
         
         const alunoExists = await this.prisma.aluno.findFirst({
             where: {
@@ -15,11 +20,14 @@ export class AlunoService {
         })
 
         if(alunoExists){
-            throw new Error('Aluno already exists');
+            throw new BadRequestException('Aluno already exists');
         }
 
         const aluno = await this.prisma.aluno.create({
-            data,
+            data: {
+                ...data,
+                media
+            }
         })
 
         return aluno;
@@ -27,6 +35,12 @@ export class AlunoService {
 
     async findAll(){
         return this.prisma.aluno.findMany();
+    }
+
+    async findOne(id: string){
+        return this.prisma.aluno.findMany({
+            select: {id: true},
+        });
     }
 
     async update(id: string, data: AlunoDTO){

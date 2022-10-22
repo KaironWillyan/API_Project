@@ -10,8 +10,9 @@ datasource db {
 model Aluno {
   id String @id @default(uuid()) @unique
   firstName String
-  lasttName String
+  lastName String
   nota1 Float
   nota2 Float
+  media Float
   @@map("Alunos")
 }

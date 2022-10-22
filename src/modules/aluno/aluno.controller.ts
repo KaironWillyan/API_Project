@@ -16,6 +16,11 @@ export class AlunoController {
     return this.alunoService.findAll();
   }
 
+  @Get(':id')
+  async findOne(@Param("id") id:string){
+      return this.alunoService.findOne(id);
+  }
+
   @Put(':id')
   async update(@Param("id") id: string, @Body() data: AlunoDTO){
     return this.alunoService.update(id, data);

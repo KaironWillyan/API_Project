@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
+import { AlunoModule } from './modules/aluno/aluno.module';
 @Module({
-  imports: [],
+  imports: [AlunoModule],
   controllers: [],
   providers: [],
 })

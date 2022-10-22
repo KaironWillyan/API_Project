@@ -1,4 +1,4 @@
-export type AlunoDTO = {
+export interface AlunoDTO {
     id?: string;
     firstName: string
     lastName: string
